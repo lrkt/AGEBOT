@@ -18,7 +18,7 @@ load_dotenv()
 
 # Усі обробники варто закріплювати за Router або Dispatcher
 root_router = Router()
-root_router .include_routers(start_router, main_router) 
+root_router.include_routers(start_router, main_router) 
 
 # Головна функція пакету
 async def main() -> None:

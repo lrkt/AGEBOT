@@ -1,5 +1,33 @@
 from datetime import datetime
+
 now = datetime.now()
+
+def valid_fulldate(date):
+    try:
+        datetime.strptime(date, "%d.%m.%Y")
+        return True
+    except ValueError:
+        return False
+
+def valid_shortdate(date):
+    try:
+        datetime.strptime(date, "%d.%m")
+        return True
+    except ValueError:
+        return False
+
+def valid_yeardate(msg):
+    try:
+        full = msg.split(",")
+        if len(full) != 2:
+            return False
+        date, age = msg.split(",")
+        datetime.strptime(date.strip(), "%d.%m")
+        if not age.strip().isdigit():
+            return False
+        return True
+    except ValueError:
+        return False
 
 def age_calculator(day: str, month: str, year: str) -> str:
     day = int(day)
@@ -44,72 +72,72 @@ def zodiac_def(day: str, month: str) -> str:
     match month:
         case 1:
             if day > 20:
-                sign = "Водолей"
+                sign = "♒ Водолей"
             else:
-                sign = "Козерог"
+                sign = "♑ Козерог"
         case 2:
             if day > 20:
-                sign = "Рыбы"
+                sign = "♓ Рыбы"
             else:
-                sign = "Водолей"
+                sign = "♒ Водолей"
         case 3:
             if day > 20:
-                sign = "Овен"
+                sign = "♈ Овен"
             else:
-                sign = "Рыбы"
+                sign = "♓ Рыбы"
         case 4:
             if day > 20:
-                sign = "Телец"
+                sign = "♉ Телец"
             else:
-                sign = "Овен"
+                sign = "♈ Овен"
         case 5:
             if day > 20:
-                sign = "Близнецы"
+                sign = "♊ Близнецы"
             else:
-                sign = "Телец"
+                sign = "♉ Телец"
         case 6:
             if day > 21:
-                sign = "Рак"
+                sign = "♋ Рак"
             else:
-                sign = "Близнецы"
+                sign = "♊ Близнецы"
         case 7:
             if day > 22:
-                sign = "Лев"
+                sign = "♌ Лев"
             else:
-                sign = "Рак"
+                sign = "♋ Рак"
         case 8:
             if day > 23:
-                sign = "Дева"
+                sign = "♍ Дева"
             else:
-                sign = "Лев"
+                sign = "♌ Лев"
         case 9:
             if day > 23:
-                sign = "Весы"
+                sign = "♎ Весы"
             else:
-                sign = "Дева"
+                sign = "♍ Дева"
         case 10:
             if day > 23:
-                sign = "Скорпион"
+                sign = "♏ Скорпион"
             else:
-                sign = "Весы"
+                sign = "♎ Весы"
         case 11:
             if day > 22:
-                sign = "Стрелец"
+                sign = "♐ Стрелец"
             else:
-                sign = "Скорпион"
+                sign = "♏ Скорпион"
         case 12:
             if day > 21:
-                sign = "Козерог"
+                sign = "♑ Козерог"
             else:
-                sign = "Стрелец"
+                sign = "♐ Стрелец"
         
     return str(sign)
 
 def ch_zodiac(year: str) -> str:
     year = int(year)
     animals = [
-        "Обезьяна", "Петух", "Собака", "Свинья", "Крыса", "Бык",
-        "Тигр", "Кролик", "Дракон", "Змея", "Лошадь", "Овца"]
+        "🐵 Обезьяна", "🐔 Петух", "🐶 Собака", "🐷 Свинья", "🐭 Крыса", "🐮 Бык",
+        "🐯 Тигр", "🐰 Кролик", "🐉 Дракон", "🐍 Змея", "🐴 Лошадь", "🐑 Овца"]
     animal = animals[year % 12]
     return str(animal)
 
