@@ -8,6 +8,7 @@ from aiogram import Bot, Dispatcher, Router
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
 
+from background import keep_alive
 from app.log.log import get_log
 from app.routers.start import start_router
 from app.routers.age import main_router
@@ -32,7 +33,7 @@ async def main() -> None:
     # Почнемо обробляти події для бота
     await dp.start_polling(bot)
 
-# Точка входу
+keep_alive()
 if __name__ == "__main__":
    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
    asyncio.run(main())
